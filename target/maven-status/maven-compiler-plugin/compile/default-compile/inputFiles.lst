@@ -1,0 +1,12 @@
+C:\Users\pedro\Desktop\controle-frequencia\src\main\java\com\attendanceapp\Application.java
+C:\Users\pedro\Desktop\controle-frequencia\src\main\java\com\attendanceapp\config\WebConfig.java
+C:\Users\pedro\Desktop\controle-frequencia\src\main\java\com\attendanceapp\controller\AttendanceController.java
+C:\Users\pedro\Desktop\controle-frequencia\src\main\java\com\attendanceapp\controller\QRCodeController.java
+C:\Users\pedro\Desktop\controle-frequencia\src\main\java\com\attendanceapp\dto\AttendanceDTO.java
+C:\Users\pedro\Desktop\controle-frequencia\src\main\java\com\attendanceapp\model\Attendance.java
+C:\Users\pedro\Desktop\controle-frequencia\src\main\java\com\attendanceapp\model\Employee.java
+C:\Users\pedro\Desktop\controle-frequencia\src\main\java\com\attendanceapp\repository\AttendanceRepository.java
+C:\Users\pedro\Desktop\controle-frequencia\src\main\java\com\attendanceapp\repository\EmployeeRepository.java
+C:\Users\pedro\Desktop\controle-frequencia\src\main\java\com\attendanceapp\service\AttendanceService.java
+C:\Users\pedro\Desktop\controle-frequencia\src\main\java\com\attendanceapp\service\QRCodeService.java
+C:\Users\pedro\Desktop\controle-frequencia\src\main\java\com\util\QRCodeUtil.java
