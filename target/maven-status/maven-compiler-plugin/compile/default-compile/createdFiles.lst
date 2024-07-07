@@ -1,4 +1,11 @@
-main\java\com\attendanceapp\Application.class
-com\attendanceapp\config\WebConfig$1.class
+com\attendanceapp\dto\AttendanceDTO.class
+com\attendanceapp\model\Attendance.class
+com\attendanceapp\controller\QRCodeController.class
+com\attendanceapp\AttendanceAppApplication.class
+com\attendanceapp\repository\AttendanceRepository.class
+com\attendanceapp\service\QRCodeService.class
+com\attendanceapp\model\Employee.class
 com\attendanceapp\config\WebConfig.class
+com\attendanceapp\service\AttendanceService.class
 com\attendanceapp\controller\AttendanceController.class
+com\attendanceapp\util\QRCodeUtil.class

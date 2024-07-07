@@ -1,46 +1,27 @@
 package com.attendanceapp.model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
-@Table(name = "funcionarios")
 public class Employee {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "nome", nullable = false)
+    private Integer id;
+    
     private String nome;
-
-    @Column(name = "apelido")
+    
     private String apelido;
-
-    @Column(name = "carga_horaria")
+    
     private Integer cargaHoraria;
+    
+    private Date dataContratacao;
 
-    @Column(name = "data_contratacao")
-    private LocalDate dataContratacao;
-
-    // Default constructor
-    public Employee() {
-    }
-
-    // Parameterized constructor
-    public Employee(String nome, String apelido, Integer cargaHoraria, LocalDate dataContratacao) {
-        this.nome = nome;
-        this.apelido = apelido;
-        this.cargaHoraria = cargaHoraria;
-        this.dataContratacao = dataContratacao;
-    }
-
-    // Getters and setters
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -68,22 +49,11 @@ public class Employee {
         this.cargaHoraria = cargaHoraria;
     }
 
-    public LocalDate getDataContratacao() {
+    public Date getDataContratacao() {
         return dataContratacao;
     }
 
-    public void setDataContratacao(LocalDate dataContratacao) {
+    public void setDataContratacao(Date dataContratacao) {
         this.dataContratacao = dataContratacao;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", apelido='" + apelido + '\'' +
-                ", cargaHoraria=" + cargaHoraria +
-                ", dataContratacao=" + dataContratacao +
-                '}';
     }
 }

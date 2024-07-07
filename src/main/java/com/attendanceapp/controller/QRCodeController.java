@@ -8,21 +8,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/qrcode")
 public class QRCodeController {
-
     @Autowired
     private QRCodeService qrCodeService;
 
-    @GetMapping("/generate/{employeeId}")
-    public ResponseEntity<byte[]> generateQRCode(@PathVariable String employeeId) {
-        byte[] qrCodeImage = qrCodeService.generateQRCode(employeeId);
-        return ResponseEntity.ok()
-                .header("Content-Type", "image/png")
-                .body(qrCodeImage);
-    }
-
-    @PostMapping("/scan")
-    public ResponseEntity<Void> scanQRCode(@RequestBody String qrCodeData) {
-        qrCodeService.processQRCodeData(qrCodeData);
-        return ResponseEntity.ok().build();
+    @GetMapping("/generate")
+    public ResponseEntity<byte[]> generateQRCode(@RequestParam String data) {
+        byte[] qrCode = qrCodeService.generateQRCode(data);
+        return ResponseEntity.ok().body(qrCode);
     }
 }

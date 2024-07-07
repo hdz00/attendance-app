@@ -1,43 +1,33 @@
 package com.attendanceapp.dto;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class AttendanceDTO {
+    private String funcionarioId;
+    private Timestamp horarioEntrada;
+    private Timestamp horarioSaida;
 
-    private int funcionarioId;
-    private Date data;
-    private String horarioEntrada;
-    private String horarioSaida;
-
-    public int getFuncionarioId() {
+    public String getFuncionarioId() {
         return funcionarioId;
     }
 
-    public void setFuncionarioId(int funcionarioId) {
+    public void setFuncionarioId(String funcionarioId) {
         this.funcionarioId = funcionarioId;
     }
 
-    public Date getData() {
-        return data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
-    }
-
-    public String getHorarioEntrada() {
+    public Timestamp getHorarioEntrada() {
         return horarioEntrada;
     }
 
-    public void setHorarioEntrada(String horarioEntrada) {
+    public void setHorarioEntrada(Timestamp horarioEntrada) {
         this.horarioEntrada = horarioEntrada;
     }
 
-    public String getHorarioSaida() {
+    public Timestamp getHorarioSaida() {
         return horarioSaida;
     }
 
-    public void setHorarioSaida(String horarioSaida) {
+    public void setHorarioSaida(Timestamp horarioSaida) {
         this.horarioSaida = horarioSaida;
     }
 }
