@@ -6,6 +6,7 @@ import com.attendanceapp.repository.AttendanceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.time.Duration;
 import java.util.Date;
 import java.util.Optional;
@@ -16,19 +17,32 @@ public class AttendanceService {
     private AttendanceRepository attendanceRepository;
 
     public void checkIn(AttendanceDTO attendanceDTO) {
-        Optional<Attendance> existingAttendance = attendanceRepository.findByFuncionarioIdAndData(attendanceDTO.getFuncionarioId(), new Date());
-        if (existingAttendance.isPresent()) {
-            Attendance attendance = existingAttendance.get();
-            attendance.setHorarioSaida(attendanceDTO.getHorarioSaida());
-            attendance.setTempoTrabalho(Duration.between(attendance.getHorarioEntrada().toLocalDateTime(), attendanceDTO.getHorarioSaida().toLocalDateTime()));
-            attendanceRepository.save(attendance);
+        // Check-in logic
+    }
+
+    public void checkOut(AttendanceDTO attendanceDTO) {
+        // Check-out logic
+    }
+
+    public void registerAttendanceFromQRCode(String data) {
+        // Parse the data from QR code, which can be JSON or delimited string
+        String[] parts = data.split(",");
+        String funcionarioId = parts[0];
+        Timestamp horarioEntrada = Timestamp.valueOf(parts[1]);
+        Timestamp horarioSaida = Timestamp.valueOf(parts[2]);
+
+        AttendanceDTO attendanceDTO = new AttendanceDTO();
+        attendanceDTO.setFuncionarioId(funcionarioId);
+        attendanceDTO.setHorarioEntrada(horarioEntrada);
+        attendanceDTO.setHorarioSaida(horarioSaida);
+
+        // Check if entry or exit based on business logic
+        // Example: if horarioSaida is null or empty, it's a check-in, otherwise, it's a
+        // check-out
+        if (horarioSaida == null) {
+            checkIn(attendanceDTO);
         } else {
-            Attendance attendance = new Attendance();
-            attendance.setFuncionarioId(attendanceDTO.getFuncionarioId());
-            attendance.setData(new Date());
-            attendance.setNome(""); // fetch employee name logic
-            attendance.setHorarioEntrada(attendanceDTO.getHorarioEntrada());
-            attendanceRepository.save(attendance);
+            checkOut(attendanceDTO);
         }
     }
 }

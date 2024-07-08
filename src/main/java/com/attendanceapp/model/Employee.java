@@ -1,21 +1,21 @@
 package com.attendanceapp.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class Employee {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
-    private String nome;
-    
-    private String apelido;
-    
-    private Integer cargaHoraria;
-    
-    private Date dataContratacao;
+
+    private String name;
+    private String nickname;
+    private Integer workload;
+    private LocalDate hireDate;
+
+    // Getters and Setters
 
     public Integer getId() {
         return id;
@@ -25,35 +25,35 @@ public class Employee {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getApelido() {
-        return apelido;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setApelido(String apelido) {
-        this.apelido = apelido;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
-    public Integer getCargaHoraria() {
-        return cargaHoraria;
+    public Integer getWorkload() {
+        return workload;
     }
 
-    public void setCargaHoraria(Integer cargaHoraria) {
-        this.cargaHoraria = cargaHoraria;
+    public void setWorkload(Integer workload) {
+        this.workload = workload;
     }
 
-    public Date getDataContratacao() {
-        return dataContratacao;
+    public LocalDate getHireDate() {
+        return hireDate;
     }
 
-    public void setDataContratacao(Date dataContratacao) {
-        this.dataContratacao = dataContratacao;
+    public void setHireDate(LocalDate hireDate) {
+        this.hireDate = hireDate;
     }
 }
