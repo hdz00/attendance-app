@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/attendance")
+@CrossOrigin(origins = "http://localhost:3000") // Add your frontend URL here
 public class AttendanceController {
 
     @Autowired
