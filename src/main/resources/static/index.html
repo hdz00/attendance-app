@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance App</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Attendance App</h1>
+        <nav>
+            <button onclick="showSection('new-employee')">New Employee</button>
+            <button onclick="showSection('checkin-checkout')">Check In/Checkout</button>
+            <button onclick="showSection('employee-report')">Employee Report</button>
+            <button onclick="showSection('manager-report')">Manager Report</button>
+            <button onclick="showSection('report-results')">Report Results</button>
+        </nav>
+        <div id="new-employee" class="section">
+            <h2>New Employee</h2>
+            <form id="employeeForm">
+                <input type="text" id="employeeName" placeholder="Nome" required>
+                <input type="text" id="employeeNickname" placeholder="Apelido" required>
+                <input type="number" id="employeeWorkload" placeholder="Carga horária (horas)" required>
+                <label>Data da contratação</label>
+                <input type="date" id="employeeHireDate" required>
+                <button type="submit">Add Employee</button>
+            </form>
+        </div>
+        <div id="checkin-checkout" class="section hidden">
+            <h2>Check In/Checkout</h2>
+            <form id="checkinForm">
+                <input type="number" id="employeeId" placeholder="Employee ID" required>
+                <button type="submit">Check In/Checkout</button>
+            </form>
+        </div>
+        <div id="employee-report" class="section hidden">
+            <h2>Employee Report</h2>
+            <form id="employeeReportForm">
+                <input type="number" id="reportEmployeeId" placeholder="Employee ID" required>
+                <label>Início</label>
+                <input type="date" id="reportStartDate" required>
+                <label>Fim</label>
+                <input type="date" id="reportEndDate" required>
+                <button type="submit">Get Employee Report</button>
+            </form>
+        </div>
+        <div id="manager-report" class="section hidden">
+            <h2>Manager Report</h2>
+            <form id="managerReportForm">
+                <label>Início</label>
+                <input type="date" id="managerReportStartDate" required>
+                <label>Fim</label>
+                <input type="date" id="managerReportEndDate" required>
+                <button type="submit">Get Manager Report</button>
+            </form>
+        </div>
+        <div id="report-results" class="section hidden">
+            <h2>Report Results</h2>
+            <div id="reportResults"></div>
+        </div>
+    </div>
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                if (section.id === sectionId) {
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

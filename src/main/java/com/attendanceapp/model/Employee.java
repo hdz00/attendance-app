@@ -1,7 +1,10 @@
-//Employee.java
+// Employee.java
 package com.attendanceapp.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Entity
@@ -10,20 +13,11 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String nome;
+    private String apelido;
+    private LocalDate dataContratacao;
+    private Integer cargaHoraria;
 
-    @Column(name = "nome")
-    private String name;
-
-    @Column(name = "apelido")
-    private String nickname;
-
-    @Column(name = "carga_horaria")
-    private Integer workload;
-
-    @Column(name = "data_contratacao")
-    private LocalDate hireDate;
-
-    // Getters and Setters
     public Integer getId() {
         return id;
     }
@@ -32,35 +26,35 @@ public class Employee {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getApelido() {
+        return apelido;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setApelido(String apelido) {
+        this.apelido = apelido;
     }
 
-    public Integer getWorkload() {
-        return workload;
+    public LocalDate getDataContratacao() {
+        return dataContratacao;
     }
 
-    public void setWorkload(Integer workload) {
-        this.workload = workload;
+    public void setDataContratacao(LocalDate dataContratacao) {
+        this.dataContratacao = dataContratacao;
     }
 
-    public LocalDate getHireDate() {
-        return hireDate;
+    public Integer getCargaHoraria() {
+        return cargaHoraria;
     }
 
-    public void setHireDate(LocalDate hireDate) {
-        this.hireDate = hireDate;
+    public void setCargaHoraria(Integer cargaHoraria) {
+        this.cargaHoraria = cargaHoraria;
     }
 }

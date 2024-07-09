@@ -1,32 +1,21 @@
-//Attendance
+// Attendance.java
 package com.attendanceapp.model;
 
-import javax.persistence.*;
-import java.sql.Timestamp;
-import java.time.Duration;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 public class Attendance {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private Integer funcionarioId; // Assuming your database uses 'funcionarioId'
+    private LocalDate date;
+    private LocalTime checkInTime;
+    private LocalTime checkOutTime;
+    private String status;
 
-    private Integer funcionarioId;
-
-    private String nome;
-
-    private LocalDate data;
-
-    private Timestamp horarioEntrada;
-
-    private Timestamp horarioSaida;
-
-    @Transient
-    private Duration tempoTrabalho;
-
-    // Getters and setters
     public Integer getId() {
         return id;
     }
@@ -43,46 +32,35 @@ public class Attendance {
         this.funcionarioId = funcionarioId;
     }
 
-    public String getNome() {
-        return nome;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
-    public LocalDate getData() {
-        return data;
+    public LocalTime getCheckInTime() {
+        return checkInTime;
     }
 
-    public void setData(LocalDate data) {
-        this.data = data;
+    public void setCheckInTime(LocalTime checkInTime) {
+        this.checkInTime = checkInTime;
     }
 
-    public Timestamp getHorarioEntrada() {
-        return horarioEntrada;
+    public LocalTime getCheckOutTime() {
+        return checkOutTime;
     }
 
-    public void setHorarioEntrada(Timestamp horarioEntrada) {
-        this.horarioEntrada = horarioEntrada;
+    public void setCheckOutTime(LocalTime checkOutTime) {
+        this.checkOutTime = checkOutTime;
     }
 
-    public Timestamp getHorarioSaida() {
-        return horarioSaida;
+    public String getStatus() {
+        return status;
     }
 
-    public void setHorarioSaida(Timestamp horarioSaida) {
-        this.horarioSaida = horarioSaida;
-    }
-
-    public Duration getTempoTrabalho() {
-        if (horarioEntrada != null && horarioSaida != null) {
-            return Duration.between(horarioEntrada.toInstant(), horarioSaida.toInstant());
-        }
-        return null;
-    }
-
-    public void setTempoTrabalho(Duration tempoTrabalho) {
-        this.tempoTrabalho = tempoTrabalho;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

@@ -1,20 +1,24 @@
-//EmployeeReportDTO.java
-
+// EmployeeReportDTO.java
 package com.attendanceapp.dto;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class EmployeeReportDTO {
-
     private Integer employeeId;
-    private String employeeName;
     private LocalDate date;
-    private LocalDateTime checkInTime;
-    private LocalDateTime checkOutTime;
-    private long workedHours;
+    private LocalTime checkInTime;
+    private LocalTime checkOutTime;
+    private String status;
 
-    // Getters and Setters
+    public EmployeeReportDTO(Integer employeeId, LocalDate date, LocalTime checkInTime, LocalTime checkOutTime,
+            String status) {
+        this.employeeId = employeeId;
+        this.date = date;
+        this.checkInTime = checkInTime;
+        this.checkOutTime = checkOutTime;
+        this.status = status;
+    }
 
     public Integer getEmployeeId() {
         return employeeId;
@@ -22,14 +26,6 @@ public class EmployeeReportDTO {
 
     public void setEmployeeId(Integer employeeId) {
         this.employeeId = employeeId;
-    }
-
-    public String getEmployeeName() {
-        return employeeName;
-    }
-
-    public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName;
     }
 
     public LocalDate getDate() {
@@ -40,27 +36,27 @@ public class EmployeeReportDTO {
         this.date = date;
     }
 
-    public LocalDateTime getCheckInTime() {
+    public LocalTime getCheckInTime() {
         return checkInTime;
     }
 
-    public void setCheckInTime(LocalDateTime checkInTime) {
+    public void setCheckInTime(LocalTime checkInTime) {
         this.checkInTime = checkInTime;
     }
 
-    public LocalDateTime getCheckOutTime() {
+    public LocalTime getCheckOutTime() {
         return checkOutTime;
     }
 
-    public void setCheckOutTime(LocalDateTime checkOutTime) {
+    public void setCheckOutTime(LocalTime checkOutTime) {
         this.checkOutTime = checkOutTime;
     }
 
-    public long getWorkedHours() {
-        return workedHours;
+    public String getStatus() {
+        return status;
     }
 
-    public void setWorkedHours(long workedHours) {
-        this.workedHours = workedHours;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

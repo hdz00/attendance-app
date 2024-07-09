@@ -1,16 +1,16 @@
-//ReportService
+// ReportService.java
 package com.attendanceapp.service;
 
 import com.attendanceapp.dto.EmployeeReportDTO;
 import com.attendanceapp.dto.ManagerReportDTO;
-import com.attendanceapp.model.Attendance;
 import com.attendanceapp.repository.AttendanceRepository;
+import com.attendanceapp.model.Attendance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.Duration;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,38 +20,35 @@ public class ReportService {
     private AttendanceRepository attendanceRepository;
 
     public List<EmployeeReportDTO> getEmployeeReport(Integer employeeId, LocalDate startDate, LocalDate endDate) {
-        List<Attendance> attendances = attendanceRepository.findByEmployeeIdAndDateRange(employeeId, startDate,
+        List<Attendance> attendanceRecords = attendanceRepository.findByEmployeeIdAndDateRange(employeeId, startDate,
                 endDate);
-        return attendances.stream()
-                .map(this::convertToEmployeeReportDTO)
+        return attendanceRecords.stream()
+                .map(record -> new EmployeeReportDTO(
+                        record.getFuncionarioId(),
+                        record.getDate(),
+                        record.getCheckInTime(),
+                        record.getCheckOutTime(),
+                        record.getStatus()))
                 .collect(Collectors.toList());
     }
 
     public ManagerReportDTO getManagerReport(LocalDate startDate, LocalDate endDate) {
-        List<Attendance> attendances = attendanceRepository.findAllByDateBetween(startDate, endDate);
-        return convertToManagerReportDTO(attendances);
-    }
+        List<Attendance> attendanceRecords = attendanceRepository.findAllByDateBetween(startDate, endDate);
 
-    private EmployeeReportDTO convertToEmployeeReportDTO(Attendance attendance) {
-        EmployeeReportDTO dto = new EmployeeReportDTO();
-        dto.setEmployeeId(attendance.getFuncionarioId());
-        dto.setEmployeeName(attendance.getNome());
-        dto.setDate(attendance.getData());
-        dto.setCheckInTime(attendance.getHorarioEntrada().toLocalDateTime());
-        dto.setCheckOutTime(
-                attendance.getHorarioSaida() != null ? attendance.getHorarioSaida().toLocalDateTime() : null);
-        dto.setWorkedHours(attendance.getTempoTrabalho() != null ? attendance.getTempoTrabalho().toHours() : 0);
-        return dto;
-    }
+        Map<Integer, List<Attendance>> attendanceByEmployee = attendanceRecords.stream()
+                .collect(Collectors.groupingBy(Attendance::getFuncionarioId));
 
-    private ManagerReportDTO convertToManagerReportDTO(List<Attendance> attendances) {
-        ManagerReportDTO dto = new ManagerReportDTO();
-        dto.setTotalEmployees(attendances.stream().map(Attendance::getFuncionarioId).distinct().count());
-        dto.setTotalHoursWorked(attendances.stream()
-                .map(Attendance::getTempoTrabalho)
-                .filter(java.util.Objects::nonNull)
-                .mapToLong(Duration::toHours)
-                .sum());
-        return dto;
+        long totalEmployees = attendanceByEmployee.size();
+        long totalDays = startDate.datesUntil(endDate.plusDays(1)).count();
+
+        long totalWorkingHours = attendanceRecords.stream()
+                .mapToLong(record -> {
+                    if (record.getCheckInTime() != null && record.getCheckOutTime() != null) {
+                        return java.time.Duration.between(record.getCheckInTime(), record.getCheckOutTime()).toHours();
+                    }
+                    return 0;
+                }).sum();
+
+        return new ManagerReportDTO(totalEmployees, totalDays, totalWorkingHours);
     }
 }

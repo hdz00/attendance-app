@@ -1,23 +1,23 @@
-//RegistroController
-
+// RegistroController.java
 package com.attendanceapp.controller;
 
-import com.attendanceapp.service.RegistroService;
+import com.attendanceapp.dto.AttendanceDTO;
+import com.attendanceapp.service.AttendanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
 @RestController
-@RequestMapping("/attendance")
+@RequestMapping("/registro")
 public class RegistroController {
 
     @Autowired
-    private RegistroService registroService;
+    private AttendanceService attendanceService;
 
     @PostMapping("/checkin")
-    public void checkIn(@RequestBody Map<String, Integer> request) {
-        Integer funcionarioId = request.get("funcionarioId");
-        registroService.checkIn(funcionarioId);
+    public void checkIn(@RequestBody Map<String, Object> payload) {
+        Integer employeeId = (Integer) payload.get("employeeId");
+        attendanceService.checkIn(new AttendanceDTO(employeeId));
     }
 }
