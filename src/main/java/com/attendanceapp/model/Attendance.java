@@ -1,27 +1,32 @@
+//Attendance
 package com.attendanceapp.model;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 public class Attendance {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "employee_id", nullable = false)
-    private Employee employee;
+    private Integer funcionarioId;
 
-    private LocalDate date;
-    private LocalDateTime checkInTime;
-    private LocalDateTime checkOutTime;
-    private Duration workedHours;
+    private String nome;
 
-    // Getters and Setters
+    private LocalDate data;
 
+    private Timestamp horarioEntrada;
+
+    private Timestamp horarioSaida;
+
+    @Transient
+    private Duration tempoTrabalho;
+
+    // Getters and setters
     public Integer getId() {
         return id;
     }
@@ -30,43 +35,54 @@ public class Attendance {
         this.id = id;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public Integer getFuncionarioId() {
+        return funcionarioId;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setFuncionarioId(Integer funcionarioId) {
+        this.funcionarioId = funcionarioId;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public String getNome() {
+        return nome;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public LocalDateTime getCheckInTime() {
-        return checkInTime;
+    public LocalDate getData() {
+        return data;
     }
 
-    public void setCheckInTime(LocalDateTime checkInTime) {
-        this.checkInTime = checkInTime;
+    public void setData(LocalDate data) {
+        this.data = data;
     }
 
-    public LocalDateTime getCheckOutTime() {
-        return checkOutTime;
+    public Timestamp getHorarioEntrada() {
+        return horarioEntrada;
     }
 
-    public void setCheckOutTime(LocalDateTime checkOutTime) {
-        this.checkOutTime = checkOutTime;
+    public void setHorarioEntrada(Timestamp horarioEntrada) {
+        this.horarioEntrada = horarioEntrada;
     }
 
-    public Duration getWorkedHours() {
-        return workedHours;
+    public Timestamp getHorarioSaida() {
+        return horarioSaida;
     }
 
-    public void setWorkedHours(Duration workedHours) {
-        this.workedHours = workedHours;
+    public void setHorarioSaida(Timestamp horarioSaida) {
+        this.horarioSaida = horarioSaida;
+    }
+
+    public Duration getTempoTrabalho() {
+        if (horarioEntrada != null && horarioSaida != null) {
+            return Duration.between(horarioEntrada.toInstant(), horarioSaida.toInstant());
+        }
+        return null;
+    }
+
+    public void setTempoTrabalho(Duration tempoTrabalho) {
+        this.tempoTrabalho = tempoTrabalho;
     }
 }

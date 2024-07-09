@@ -1,27 +1,23 @@
-//ManagerReportDTO.java
-
+//ManagerReportDTO
 package com.attendanceapp.dto;
 
-import java.time.LocalDate;
-import java.util.List;
-
 public class ManagerReportDTO {
-    private LocalDate date;
-    private List<EmployeeReportDTO> employeeReports;
+    private long totalEmployees;
+    private long totalHoursWorked;
 
-    public LocalDate getDate() {
-        return date;
+    public long getTotalEmployees() {
+        return totalEmployees;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setTotalEmployees(long totalEmployees) {
+        this.totalEmployees = totalEmployees;
     }
 
-    public List<EmployeeReportDTO> getEmployeeReports() {
-        return employeeReports;
+    public long getTotalHoursWorked() {
+        return totalHoursWorked;
     }
 
-    public void setEmployeeReports(List<EmployeeReportDTO> employeeReports) {
-        this.employeeReports = employeeReports;
+    public void setTotalHoursWorked(long totalHoursWorked) {
+        this.totalHoursWorked = totalHoursWorked;
     }
 }

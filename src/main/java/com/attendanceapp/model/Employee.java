@@ -1,3 +1,4 @@
+//Employee.java
 package com.attendanceapp.model;
 
 import javax.persistence.*;
@@ -10,13 +11,19 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "nome")
     private String name;
+
+    @Column(name = "apelido")
     private String nickname;
+
+    @Column(name = "carga_horaria")
     private Integer workload;
+
+    @Column(name = "data_contratacao")
     private LocalDate hireDate;
 
     // Getters and Setters
-
     public Integer getId() {
         return id;
     }

@@ -3,15 +3,15 @@ package com.attendanceapp.dto;
 import java.sql.Timestamp;
 
 public class AttendanceDTO {
-    private String funcionarioId;
+    private Integer funcionarioId;
     private Timestamp horarioEntrada;
     private Timestamp horarioSaida;
 
-    public String getFuncionarioId() {
+    public Integer getFuncionarioId() {
         return funcionarioId;
     }
 
-    public void setFuncionarioId(String funcionarioId) {
+    public void setFuncionarioId(Integer funcionarioId) {
         this.funcionarioId = funcionarioId;
     }
 

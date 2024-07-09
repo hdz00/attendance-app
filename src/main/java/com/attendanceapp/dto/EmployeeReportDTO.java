@@ -6,18 +6,21 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class EmployeeReportDTO {
-    private String employeeId;
+
+    private Integer employeeId;
     private String employeeName;
     private LocalDate date;
     private LocalDateTime checkInTime;
     private LocalDateTime checkOutTime;
     private long workedHours;
 
-    public String getEmployeeId() {
+    // Getters and Setters
+
+    public Integer getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(String employeeId) {
+    public void setEmployeeId(Integer employeeId) {
         this.employeeId = employeeId;
     }
 

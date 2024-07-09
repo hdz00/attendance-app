@@ -1,3 +1,5 @@
+//AttendanceController
+
 package com.attendanceapp.controller;
 
 import com.attendanceapp.dto.AttendanceDTO;
@@ -9,11 +11,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/attendance")
 public class AttendanceController {
+
     @Autowired
     private AttendanceService attendanceService;
 
-    @PostMapping("/checkin")
-    public ResponseEntity<?> checkIn(@RequestBody AttendanceDTO attendanceDTO) {
+    @PostMapping("/checkin_old")
+    public ResponseEntity<Void> checkIn(@RequestBody AttendanceDTO attendanceDTO) {
         attendanceService.checkIn(attendanceDTO);
         return ResponseEntity.ok().build();
     }
