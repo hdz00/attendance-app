@@ -6,17 +6,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     employeeForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const name = document.getElementById('employeeName').value;
-        const nickname = document.getElementById('employeeNickname').value;
-        const workload = document.getElementById('employeeWorkload').value;
-        const hireDate = document.getElementById('employeeHireDate').value;
+        const nome = document.getElementById('employeeName').value;
+        const apelido = document.getElementById('employeeNickname').value;
+        const cargaHoraria = document.getElementById('employeeWorkload').value;
+        const dataContratacao = document.getElementById('employeeHireDate').value;
 
-        const response = await fetch('http://localhost:8080/employees', {
+        const response = await fetch('http://localhost:8080/employee', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name, nickname, workload, hireDate })
+            body: JSON.stringify({ nome, apelido, cargaHoraria, dataContratacao })
         });
 
         if (response.ok) {
@@ -29,14 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     checkinForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const funcionarioId = document.getElementById('employeeId').value;
+        const employeeId = document.getElementById('employeeId').value;
 
         const response = await fetch('http://localhost:8080/attendance/checkin', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ funcionarioId })
+            body: JSON.stringify({ employeeId })
         });
 
         if (response.ok) {
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const startDate = document.getElementById('reportStartDate').value;
         const endDate = document.getElementById('reportEndDate').value;
 
-        const response = await fetch(`http://localhost:8080/reports/employee?employeeId=${employeeId}&startDate=${startDate}&endDate=${endDate}`);
+        const response = await fetch(`http://localhost:8080/attendance/employee-report?employeeId=${employeeId}&startDate=${startDate}&endDate=${endDate}`);
 
         if (response.ok) {
             const report = await response.json();
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const startDate = document.getElementById('managerReportStartDate').value;
         const endDate = document.getElementById('managerReportEndDate').value;
 
-        const response = await fetch(`http://localhost:8080/reports/manager?startDate=${startDate}&endDate=${endDate}`);
+        const response = await fetch(`http://localhost:8080/attendance/manager-report?startDate=${startDate}&endDate=${endDate}`);
 
         if (response.ok) {
             const report = await response.json();
